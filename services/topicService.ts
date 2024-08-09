@@ -2,11 +2,15 @@ import { Request, Response } from 'express';
 import topicModel from '../models/topicModel';
 
 const getAllTopic = async () => {
-    const topics = await topicModel.find({
-        deleted: false,
-    });
+    try {
+        const topics = await topicModel.find({
+            deleted: false,
+        });
 
-    return topics;
+        return topics;
+    } catch (error) {
+        throw error;
+    }
 };
 
 export default {
