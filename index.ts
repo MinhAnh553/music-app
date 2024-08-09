@@ -1,6 +1,8 @@
 import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
 import * as database from './config/database';
+import { clientRoute } from './routes/client/indexRoute';
+
 dotenv.config();
 
 // app, port
@@ -15,12 +17,9 @@ app.set('view engine', 'pug');
 database.connect();
 
 // Route
-app.get('/topics', (req: Request, res: Response) => {
-    res.render('client/pages/topic/index', {
-        pageTitle: 'Chủ đề bài hát',
-    });
-});
+app.use(clientRoute);
 
+// Run
 app.listen(port, () => {
     console.log(`Project back-end running at http://localhost:${port}...`);
 });
