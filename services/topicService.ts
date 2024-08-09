@@ -13,6 +13,20 @@ const getAllTopic = async () => {
     }
 };
 
+const getTopicBySlug = async (slugTopic: string) => {
+    try {
+        const topic = await topicModel.findOne({
+            slug: slugTopic,
+            deleted: false,
+        });
+
+        return topic;
+    } catch (error) {
+        throw error;
+    }
+};
+
 export default {
     getAllTopic,
+    getTopicBySlug,
 };
