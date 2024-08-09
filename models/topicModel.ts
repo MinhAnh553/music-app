@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const TopicSchema = new mongoose.Schema(
+const topicSchema = new mongoose.Schema(
     {
         title: String,
         avatar: String,
@@ -18,6 +18,6 @@ const TopicSchema = new mongoose.Schema(
     },
 );
 
-const topicModel = mongoose.model('Topic', TopicSchema, 'Topics');
+const topicModel = mongoose.model('topic', topicSchema, 'topics');
 
 export default topicModel;
