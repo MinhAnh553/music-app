@@ -13,6 +13,9 @@ const port: number | string = process.env.PORT || 5503;
 app.set('views', './views');
 app.set('view engine', 'pug');
 
+// Config static file
+app.use(express.static(__dirname + '/public'));
+
 // Database
 database.connect();
 
