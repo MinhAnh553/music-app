@@ -19,6 +19,21 @@ const getSongInTopic = async (slugTopic: string) => {
     }
 };
 
+const getSongBySlug = async (slug: string) => {
+    try {
+        const song = await songModel.findOne({
+            slug: slug,
+            status: 'active',
+            deleted: false,
+        });
+
+        return song;
+    } catch (error) {
+        throw error;
+    }
+};
+
 export default {
     getSongInTopic,
+    getSongBySlug,
 };

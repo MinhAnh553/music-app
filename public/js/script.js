@@ -1,14 +1,35 @@
-// Show alert
-const showAlert = document.querySelector('[show-alert]');
-if (showAlert) {
-    const time = parseInt(showAlert.getAttribute('data-time'));
-    const close = showAlert.querySelector('[close-alert]');
+const boxPlayer = document.getElementById('aplayer');
+if (boxPlayer) {
+    let dataSong = document
+        .querySelector('[data-song]')
+        .getAttribute('data-song');
+    dataSong = JSON.parse(dataSong);
 
-    setTimeout(() => {
-        showAlert.classList.add('alert-hidden');
-    }, time);
+    let datSinger = document
+        .querySelector('[data-singer]')
+        .getAttribute('data-singer');
+    datSinger = JSON.parse(datSinger);
 
-    close.addEventListener('click', () => {
-        showAlert.classList.add('alert-hidden');
+    const ap = new APlayer({
+        container: boxPlayer,
+        autoplay: true,
+        audio: [
+            {
+                name: dataSong.title,
+                artist: datSinger.fullName,
+                url: dataSong.audio,
+                cover: dataSong.avatar,
+            },
+        ],
+    });
+
+    const avatarSong = document.querySelector('.inner-avatar');
+
+    ap.on('play', function () {
+        avatarSong.style.animationPlayState = 'running';
+    });
+
+    ap.on('pause', function () {
+        avatarSong.style.animationPlayState = 'paused';
     });
 }

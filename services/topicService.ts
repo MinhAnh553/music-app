@@ -26,7 +26,21 @@ const getTopicBySlug = async (slugTopic: string) => {
     }
 };
 
+const getTopicById = async (id: string) => {
+    try {
+        const topic = await topicModel.findOne({
+            _id: id,
+            deleted: false,
+        });
+
+        return topic;
+    } catch (error) {
+        throw error;
+    }
+};
+
 export default {
     getAllTopic,
     getTopicBySlug,
+    getTopicById,
 };
